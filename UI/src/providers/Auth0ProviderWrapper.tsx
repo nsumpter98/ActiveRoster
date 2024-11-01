@@ -5,9 +5,6 @@ const Auth0ProviderWithHistory = ({ children }: { children: ReactNode }) => {
   const clientId = import.meta.env.VITE_CLIENT_ID;
   const domain = import.meta.env.VITE_ISSUER_BASE_URL;
 
-  console.log("clientId", clientId);
-  console.log("domain", domain);
-
   return (
     <Auth0Provider
       domain={domain}
@@ -15,7 +12,7 @@ const Auth0ProviderWithHistory = ({ children }: { children: ReactNode }) => {
       useRefreshTokens={true}
       cacheLocation="localstorage"
       authorizationParams={{
-        redirect_uri: window.location.origin + "/callback",
+        redirect_uri: window.location.origin + "",
         audience: import.meta.env.VITE_AUTH0_AUDIENCE,
       }}
     >
