@@ -1,55 +1,79 @@
-import Header from "../components/Header";
-import { useAuth0 } from "@auth0/auth0-react";
+import React from "react";
 
-export default function Dashboard() {
-  const { logout } = useAuth0();
-  const navigation = [
-    { name: "Dashboard", href: "#", current: true },
-    {
-      name: "Groups",
-      href: "#",
-      current: false,
-    },
-    {
-      name: "Roster",
-      href: "#",
-      current: false,
-    },
-    {
-      name: "Users",
-      href: "#",
-      current: false,
-    },
-  ];
-  const userNavigation = [
-    { name: "Your Profile", callback: () => {} },
-    {
-      name: "Sign out",
-      callback: () => {
-        logout({ logoutParams: { returnTo: window.location.origin } });
-      },
-    },
-  ];
-
+const Dashboard: React.FC = () => {
   return (
-    <>
-      <div className="min-h-full">
-        <Header navigation={navigation} userNavigation={userNavigation} />
-
-        <header className="bg-white shadow">
-          <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-            <h1 className="text-3xl font-bold tracking-tight text-gray-900">
-              Dashboard
-            </h1>
-          </div>
-        </header>
-
-        <main>
-          <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-            {/* Your content */}
-          </div>
-        </main>
+    <div className="min-h-screen p-10">
+      <h1 className="text-3xl font-bold text-gray-800 mb-10">
+        Welcome to the Dashboard
+      </h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="bg-white p-6 rounded-lg shadow-md">
+          <img
+            src="https://via.placeholder.com/150"
+            alt="Sample"
+            className="mb-4 rounded"
+          />
+          <h2 className="text-xl font-bold mb-2 text-gray-800">Card 1</h2>
+          <p className="text-gray-700">This is a sample card with an image.</p>
+        </div>
+        <div className="bg-white p-6 rounded-lg shadow-md">
+          <img
+            src="https://via.placeholder.com/150"
+            alt="Sample"
+            className="mb-4 rounded"
+          />
+          <h2 className="text-xl font-bold mb-2 text-gray-800">Card 2</h2>
+          <p className="text-gray-700">
+            This is another sample card with an image.
+          </p>
+        </div>
+        <div className="bg-white p-6 rounded-lg shadow-md">
+          <img
+            src="https://via.placeholder.com/150"
+            alt="Sample"
+            className="mb-4 rounded"
+          />
+          <h2 className="text-xl font-bold mb-2 text-gray-800">Card 3</h2>
+          <p className="text-gray-700">
+            This is yet another sample card with an image.
+          </p>
+        </div>
+        <div className="bg-white p-6 rounded-lg shadow-md">
+          <img
+            src="https://via.placeholder.com/150"
+            alt="Sample"
+            className="mb-4 rounded"
+          />
+          <h2 className="text-xl font-bold mb-2 text-gray-800">Card 4</h2>
+          <p className="text-gray-700">
+            This is an additional sample card with an image.
+          </p>
+        </div>
+        <div className="bg-white p-6 rounded-lg shadow-md">
+          <img
+            src="https://via.placeholder.com/150"
+            alt="Sample"
+            className="mb-4 rounded"
+          />
+          <h2 className="text-xl font-bold mb-2 text-gray-800">Card 5</h2>
+          <p className="text-gray-700">
+            This is another additional sample card with an image.
+          </p>
+        </div>
+        <div className="bg-white p-6 rounded-lg shadow-md">
+          <img
+            src="https://via.placeholder.com/150"
+            alt="Sample"
+            className="mb-4 rounded"
+          />
+          <h2 className="text-xl font-bold mb-2 text-gray-800">Card 6</h2>
+          <p className="text-gray-700">
+            This is yet another additional sample card with an image.
+          </p>
+        </div>
       </div>
-    </>
+    </div>
   );
-}
+};
+
+export default Dashboard;
