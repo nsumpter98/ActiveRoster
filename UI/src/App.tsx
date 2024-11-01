@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
@@ -13,14 +13,21 @@ function App() {
   const makeApiCall = async () => {
     const token = await getAccessTokenSilently();
     console.log(token);
-    const response = await fetch("http://localhost:3000/attendance-record", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await fetch(
+      `${import.meta.env.VITE_SERVER_URL}/attendance-record`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
     const data = await response.json();
     console.log(data);
   };
+
+  useEffect(() => {
+    console.log(isAuthenticated);
+  }, []);
 
   return (
     <>
