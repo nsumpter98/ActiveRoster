@@ -23,7 +23,6 @@ const RegisterRoutes = (app: Express) => {
 
   app.post("/group", groupController.create);
   app.get("/group/:groupId", groupController.get);
-
   app.get("/groups", groupController.list);
   app.put("/group", groupController.update);
   app.delete("/group/:groupId", groupController.delete);
