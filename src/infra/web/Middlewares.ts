@@ -22,8 +22,6 @@ const pino = require("pino-http")({
   },
 });
 
-
-
 const authCheck = jwt({
   secret: jwks.expressJwtSecret({
     cache: true,
@@ -65,8 +63,8 @@ const Middlewares = (app: Express) => {
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
   app.use(cors({ origin: "*" })); // @todo: change this to the actual domain before deploying
-  // app.use(authCheck);
-  // app.use(authorizeUser);
+  app.use(authCheck);
+  app.use(authorizeUser);
 };
 
 export { Middlewares };
