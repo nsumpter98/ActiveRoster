@@ -23,7 +23,7 @@ const RegisterRoutes = (app: Express) => {
 
   app.post("/group", groupController.create);
   app.get("/group/:groupId", groupController.get);
-  
+
   app.get("/groups", groupController.list);
   app.put("/group", groupController.update);
   app.delete("/group/:groupId", groupController.delete);
@@ -32,6 +32,12 @@ const RegisterRoutes = (app: Express) => {
   const studentController = new StudentController(studentRepository);
 
   app.get("/students", (req, res) => studentController.list(req, res));
+  app.post("/student", (req, res) => studentController.create(req, res));
+  app.get("/student/:studentId", (req, res) => studentController.get(req, res));
+  app.put("/student", (req, res) => studentController.update(req, res));
+  app.delete("/student/:studentId", (req, res) =>
+    studentController.delete(req, res)
+  );
 };
 
 export { RegisterRoutes };

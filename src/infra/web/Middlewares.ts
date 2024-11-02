@@ -9,6 +9,7 @@ import express, { Express } from "express";
 import cors from "cors";
 import jwks from "jwks-rsa";
 import axios from "axios";
+import { rateLimit } from "express-rate-limit";
 const pino = require("pino-http")({
   quietReqLogger: true, // turn off the default logging output
   transport: {
@@ -49,16 +50,22 @@ const authorizeUser = async (req: any, res: any, next: any) => {
   const userUrl = aud[1];
 
   // reach out to the userUrl to get the user data
-  const user = await axios.get(userUrl, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+  // const user = await axios.get(userUrl, {
+  //   headers: {
+  //     Authorization: `Bearer ${token}`,
+  //   },
+  // });
 
   next();
 };
 
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // limit each IP to 100 requests per windowMs
+});
+
 const Middlewares = (app: Express) => {
+  app.use(limiter); // accidentally had a react state loop and auth0 rate limited me... whoops
   app.use(pino);
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));

@@ -10,6 +10,7 @@ import {
 import { useAuth0 } from "@auth0/auth0-react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
+import shoePng from "../assets/shoe.png";
 
 type Navigation = {
   name: string;
@@ -41,11 +42,7 @@ export default function Header({
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              <img
-                alt="Your Company"
-                src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=500"
-                className="h-8 w-8"
-              />
+              <img alt="Your Company" src={shoePng} className="h-10 w-10" />
             </div>
             <div className="hidden md:block">
               {isAuthenticated && (
