@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import Header from "./components/Header";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -11,6 +11,7 @@ export default function Layout() {
     { name: "Dashboard", href: "/", current: false },
     { name: "Groups", href: "/groups", current: false },
     { name: "Roster", href: "/roster", current: false },
+    { name: "Students", href: "/students", current: false },
     { name: "Users", href: "/users", current: false },
   ]);
 

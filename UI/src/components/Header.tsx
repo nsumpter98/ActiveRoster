@@ -9,6 +9,7 @@ import {
 } from "@headlessui/react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Link } from "react-router-dom";
 
 type Navigation = {
   name: string;
@@ -50,9 +51,9 @@ export default function Header({
               {isAuthenticated && (
                 <div className="ml-10 flex items-baseline space-x-4">
                   {navigation.map((item: Navigation) => (
-                    <a
+                    <Link
                       key={item.name}
-                      href={item.href}
+                      to={item.href}
                       aria-current={item.current ? "page" : undefined}
                       className={classNames(
                         item.current
@@ -62,7 +63,7 @@ export default function Header({
                       )}
                     >
                       {item.name}
-                    </a>
+                    </Link>
                   ))}
                 </div>
               )}

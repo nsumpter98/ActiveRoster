@@ -1,15 +1,28 @@
 // init middlewares
-
-import express, { Express } from "express";
-import cors from "cors";
-var { expressjwt: jwt } = require("express-jwt");
-import jwks from "jwks-rsa";
-import axios from "axios";
-
 import dotenv from "dotenv"; // not sure why dotenv is not working from the index.ts file. will investigate later
 // @todo: investigate why dotenv is not working from the index.ts
 
 dotenv.config();
+
+const { expressjwt: jwt } = require("express-jwt");
+import express, { Express } from "express";
+import cors from "cors";
+import jwks from "jwks-rsa";
+import axios from "axios";
+const pino = require("pino-http")({
+  quietReqLogger: true, // turn off the default logging output
+  transport: {
+    target: "pino-mongodb",
+    level: "info",
+    options: {
+      uri: process.env.MONGO_URI,
+      database: "logs",
+      collection: "log-collection",
+    },
+  },
+});
+
+
 
 const authCheck = jwt({
   secret: jwks.expressJwtSecret({
@@ -44,17 +57,16 @@ const authorizeUser = async (req: any, res: any, next: any) => {
     },
   });
 
-  console.log(user.data);
-
   next();
 };
 
 const Middlewares = (app: Express) => {
+  app.use(pino);
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
   app.use(cors({ origin: "*" })); // @todo: change this to the actual domain before deploying
-  app.use(authCheck);
-  app.use(authorizeUser);
+  // app.use(authCheck);
+  // app.use(authorizeUser);
 };
 
 export { Middlewares };
